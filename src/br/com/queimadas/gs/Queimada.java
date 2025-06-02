@@ -5,16 +5,18 @@ import java.time.LocalDateTime;
 
 public class Queimada {
     private int id;
-    private LocalDateTime dataHoraQueimada;
+    private String hora;
     private String causa;
     private String status;
     private Localizacao localizacao;
     private double areaEstimadaHectares;
 
-    public Queimada(int id, Localizacao localizacao, LocalDateTime dataHoraQueimada) {
+
+
+    public Queimada(int id, Localizacao localizacao, String hora) {
         this.id = id;
         this.localizacao = localizacao;
-        this.dataHoraQueimada = dataHoraQueimada;
+        this.hora = hora;
         this.status = "Ativa";
         this.causa = "Não informada";
         this.areaEstimadaHectares = 0.0;
@@ -25,15 +27,10 @@ public class Queimada {
         System.out.println("Queimada ID " + id + ": Área estimada atualizada para: " + areaEstimadaHectares);
     }
 
-    public void registrarDetalhes(String novoStatus) {
-        this.status = novoStatus;
-        System.out.println("Queimada ID " + this.id + ": Status atualizado para " + novoStatus + ".");
-    }
-
-    public void registrarDetalhes(String novaCausa, double areaEstimadaHectares) {
-        this.causa = novaCausa;
+    public void registrarDetalhes(double areaEstimadaHectares, String causa){
         this.areaEstimadaHectares = areaEstimadaHectares;
-        System.out.println("Queimada ID " + this.id + ": Causa '" + novaCausa + "' e área '" + areaEstimadaHectares + " ha' registradas.");
+        this.causa = causa;
+        System.out.println("Queimada ID " + id + ": Área estimada atualizada para: " + areaEstimadaHectares + "; Causa da queimada: " + causa);
     }
 
     public double getAreaEstimadaHectares() {
@@ -56,6 +53,14 @@ public class Queimada {
         return status;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
@@ -68,13 +73,6 @@ public class Queimada {
         this.causa = causa;
     }
 
-    public LocalDateTime getDataHoraQueimada() {
-        return dataHoraQueimada;
-    }
-
-    public void setDataHoraQueimada(LocalDateTime dataHoraQueimada) {
-        this.dataHoraQueimada = dataHoraQueimada;
-    }
 
     public int getId() {
         return id;
@@ -82,5 +80,13 @@ public class Queimada {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void exibirInformacoesQueimada() {
+    }
+
+    @Override
+    public String toString() {
+        return "ID Queimada: " + id + "; Localização: " + localizacao + "; Causa: " + causa + "; Status: " + status + "; Horário: " + hora + "; Área: " + areaEstimadaHectares + "ha";
     }
 }
