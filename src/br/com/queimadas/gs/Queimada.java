@@ -2,6 +2,7 @@ package br.com.queimadas.gs;
 
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Queimada {
     private int id;
@@ -87,6 +88,6 @@ public class Queimada {
 
     @Override
     public String toString() {
-        return "ID Queimada: " + id + "; Localização: " + localizacao + "; Causa: " + causa + "; Status: " + status + "; Horário: " + hora + "; Área: " + areaEstimadaHectares + "ha";
+        return "ID Queimada: " + id + "; Localização: " + localizacao + "; Causa: " + causa + "; Status: " + status + "; Horário: " + hora + "; Área: " + areaEstimadaHectares + "ha\n";
     }
 }

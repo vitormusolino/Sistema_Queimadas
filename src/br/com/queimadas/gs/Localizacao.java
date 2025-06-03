@@ -38,6 +38,6 @@
 
         @Override
         public String toString() {
-            return "Município: " + municipio + ", Estado: " + estado + ", País:" + pais;
+            return "Município: " + municipio + ", Estado: " + estado + ", País: " + pais;
         }
     }
