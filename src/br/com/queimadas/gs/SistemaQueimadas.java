@@ -6,9 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SistemaQueimadas {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private List<Queimada> listaQueimadas;
+    private int proximoID;
 
-    List<Queimada> listaQueimadas = new ArrayList<>();
+    public SistemaQueimadas() {
+        this.listaQueimadas = new ArrayList<>();
+        this.proximoID = 1;
+    }
 
     public void cadastroQueimadas(){
         System.out.println("Cadastro de queimadas: \n" +
@@ -24,20 +29,21 @@ public class SistemaQueimadas {
         Localizacao localizacao = new Localizacao(municipio, estado, pais);
 
         System.out.println("Agora vamos cadastrar os detalhes da queimada: \n");
-        System.out.println("Cadastre um ID para sua queimada: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = proximoID++;
+        System.out.println("ID da Queimada gerado automaticamente: " + id);
         System.out.println("Cadastre o horário da queimada: ");
         String horario = scanner.nextLine();
 
         Queimada queimada = new Queimada(id, localizacao, horario);
         listaQueimadas.add(queimada);
+    }
 
+    public void listarQueimadas(){
+        System.out.println("Lista de queimadas: \n");
+        System.out.println(listaQueimadas);
     }
 
     public void iniciar() {
-
-
         int opcao = -1;
 
         while(opcao != 0){
@@ -59,7 +65,7 @@ public class SistemaQueimadas {
                 if(opcao == 1){
                     cadastroQueimadas();
                 }else if(opcao == 2){
-                    System.out.println("Listagem das queimadas");
+                    listarQueimadas();
                 }else{
                     System.out.println("Adeus!");
                     break;
