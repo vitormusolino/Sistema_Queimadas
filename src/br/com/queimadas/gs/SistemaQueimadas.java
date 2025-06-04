@@ -3,6 +3,7 @@ package br.com.queimadas.gs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class SistemaQueimadas {
@@ -34,6 +35,29 @@ public class SistemaQueimadas {
         System.out.print("País: ");
         String pais = scanner.nextLine();
         Localizacao localizacao = new Localizacao(municipio, estado, pais);
+
+        System.out.print("Quer adicionar mais detalhes na localização? \n" +
+                "1- Sim\n" +
+                "2- Não\n");
+        opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        if(opcao == 1){
+            System.out.print("Latitude: ");
+            Double latitude = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.print("Longitude: ");
+            Double longitude = scanner.nextDouble();
+            scanner.nextLine();
+
+            localizacao.registrarInformacoes(latitude,longitude);
+
+            System.out.println("********************************************");
+            System.out.println("Informações da localização: " + localizacao);
+            System.out.println("********************************************");
+        }else{
+            System.out.println("Tudo bem! Continuando o registro...");
+        }
 
         System.out.println("Agora vamos cadastrar os detalhes da queimada: \n");
         int id = proximoID++;
