@@ -9,6 +9,7 @@ public class SistemaQueimadas {
     private Scanner scanner = new Scanner(System.in);
     private List<Queimada> listaQueimadas;
     private int proximoID;
+    int opcao = -1;
 
     public SistemaQueimadas() {
         this.listaQueimadas = new ArrayList<>();
@@ -36,6 +37,25 @@ public class SistemaQueimadas {
 
         Queimada queimada = new Queimada(id, localizacao, horario);
         listaQueimadas.add(queimada);
+
+        System.out.println("Você deseja ADICIONAR Causa e Tamanho da área impactada?\n" +
+                "1 - Sim\n" +
+                "2 - Não");
+        opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        if(opcao == 1){
+            System.out.println("Qual o tamanho da área afetada em hectáres? (Caso for especificar, usar vírgula) ");
+            double area = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Qual foi a causa da queimada?");
+            String causaQueimada = scanner.nextLine();
+
+            queimada.registrarDetalhes(area,causaQueimada);
+            System.out.println("Detalhes registrados com sucesso, informações da queimada: \n " + queimada);
+        }else{
+            System.out.println("Queimada registrada!");
+        }
     }
 
     public void listarQueimadas(){
@@ -43,29 +63,66 @@ public class SistemaQueimadas {
         System.out.println(listaQueimadas);
     }
 
-    public void iniciar() {
-        int opcao = -1;
+    public void atualizarQueimada(){
+        System.out.println("Você deseja atualizar o status de uma queimada?\n" +
+                "1- Sim\n" +
+                "2- Não");
+        opcao = scanner.nextInt();
+        scanner.nextLine();
 
+        if(opcao == 1){
+            System.out.println("Diga o ID da queimada que você deseja atualizar o Status: \n");
+            int idQueimada = scanner.nextInt();
+            scanner.nextLine();
+
+            Queimada queimadaEncontrada = null;
+            for (Queimada queimada : listaQueimadas) {
+                if (queimada.getId() == idQueimada) {
+                    queimadaEncontrada = queimada;
+                    break;
+                }
+            }
+
+            if(queimadaEncontrada != null){
+                System.out.println("Diga o novo status da queimada: Controlado ou Resolvido \n");
+                String statusQueimada = scanner.nextLine();
+
+                if(!statusQueimada.equalsIgnoreCase("Controlado") && !statusQueimada.equalsIgnoreCase("Resolvido")) {
+                    System.out.println("Status inválido, digite se o status da queimada está Controlado ou Resolvido");
+                }else{
+                    queimadaEncontrada.mudarStatus(statusQueimada);
+                    System.out.println("Status da Queimada ID" + queimadaEncontrada.getId() + " alterado para: " + statusQueimada);
+                    System.out.println(queimadaEncontrada);
+                }
+            }else{
+                System.out.println("ID não encontrado");
+            }
+        }
+    }
+
+    public void iniciar() {
         while(opcao != 0){
             String mensagemSistema = """
                     BEM VINDO AO SISTEMA DE QUEIMADAS, O QUE DESEJA FAZER?
                     -----------------------------------------------------
                         1- Cadastrar Queimadas
                         2- Listar Queimadas
+                        3- Atualizar Queimada
                         0- Sair
                     -----------------------------------------------------
-                        Digite sua opção: \n
                     """;
 
             System.out.println(mensagemSistema);
             opcao = scanner.nextInt();
             scanner.nextLine();
 
-            if (opcao == 1 || opcao == 2 || opcao == 0){
+            if (opcao == 1 || opcao == 2 || opcao == 3 ||  opcao == 0){
                 if(opcao == 1){
                     cadastroQueimadas();
                 }else if(opcao == 2){
                     listarQueimadas();
+                }else if(opcao == 3){
+                    atualizarQueimada();
                 }else{
                     System.out.println("Adeus!");
                     break;

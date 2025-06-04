@@ -34,6 +34,11 @@ public class Queimada {
         System.out.println("Queimada ID " + id + ": Área estimada atualizada para: " + areaEstimadaHectares + "; Causa da queimada: " + causa);
     }
 
+    public void mudarStatus(String status){
+        this.status = status;
+        System.out.println("Queimada ID " + id + ": Mudando o status para = " + status);
+    }
+
     public double getAreaEstimadaHectares() {
         return areaEstimadaHectares;
     }
