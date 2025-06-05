@@ -1,7 +1,7 @@
 # Sistema_Queimadas
 Sistema de registro de queimadas em Java para Global Solution FIAP 2025.
 
-<details> <summary>Clique para expandir o diagrama em Mermaid</summary>
+<details> <summary>Clique para expandir o diagrama</summary>
 
 ```mermaid
 classDiagram
