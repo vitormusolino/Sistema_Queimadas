@@ -23,6 +23,18 @@
             System.out.println("Latitude:" + latitude + " e Longitude:" + longitude + " foram adicionadas a localização");
         }
 
+        public void retornarPais(){
+            System.out.println("O País da queimada é: " + pais + "." );
+        }
+
+        public void retornarEstado(){
+            System.out.println("O Estado da queimada é:" + estado + ", " + pais + ".");
+        }
+
+        public void retornarMunicipio(){
+            System.out.println("O Município da queimada é:"+ municipio + ", " + estado + ", " + pais + ".");
+        }
+
         public String getMunicipio() {
             return municipio;
         }

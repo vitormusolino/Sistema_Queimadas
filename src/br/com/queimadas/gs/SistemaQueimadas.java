@@ -43,10 +43,10 @@ public class SistemaQueimadas {
         scanner.nextLine();
 
         if(opcao == 1){
-            System.out.print("Latitude: ");
+            System.out.print("Latitude: (Caso vá específicar, coloque vírgula)\n");
             Double latitude = scanner.nextDouble();
             scanner.nextLine();
-            System.out.print("Longitude: ");
+            System.out.print("Longitude: (Caso vá específicar, coloque vírgula)\n");
             Double longitude = scanner.nextDouble();
             scanner.nextLine();
 
@@ -147,6 +147,58 @@ public class SistemaQueimadas {
         }
     }
 
+    public void verificarLocalizacao(){
+        System.out.println("Qual o ID da queimada que deseja verificar?\n");
+        int idQueimada = scanner.nextInt();
+        scanner.nextLine();
+
+        Queimada queimadaEncontrada = null;
+        for (Queimada queimada : listaQueimadas) {
+            if (queimada.getId() == idQueimada) {
+                queimadaEncontrada = queimada;
+                break;
+            }
+        }
+        if(queimadaEncontrada != null){
+            System.out.println("Você quer verificar a localização com:\n" +
+                    "1- Páis\n" +
+                    "2- Estado e País\n" +
+                    "3- Município, Estado e País");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+            if(opcao == 1){
+                queimadaEncontrada.getLocalizacao().retornarPais();
+            }else if(opcao == 2){
+                queimadaEncontrada.getLocalizacao().retornarEstado();
+            }else if(opcao == 3){
+                queimadaEncontrada.getLocalizacao().retornarMunicipio();
+            }else{
+                System.out.println("Número inválido!");
+            }
+        }else{
+            System.out.println("ID não encontrado");
+        }
+    }
+
+    public void verificarArea(){
+        System.out.println("Qual o ID da queimada que deseja verificar?\n");
+        int idQueimada = scanner.nextInt();
+        scanner.nextLine();
+
+        Queimada queimadaEncontrada = null;
+        for (Queimada queimada : listaQueimadas) {
+            if (queimada.getId() == idQueimada) {
+                queimadaEncontrada = queimada;
+                break;
+            }
+        }
+        if(queimadaEncontrada != null){
+            queimadaEncontrada.verificarArea();
+        }else{
+            System.out.println("ID não encontrado");
+        }
+    }
+
     public void verificarStatus(){
         System.out.println("Queimadas Ativas: \n");
         System.out.println("--------------------------\n");
@@ -170,7 +222,9 @@ public class SistemaQueimadas {
                         1- Cadastrar Queimada
                         2- Listar Queimadas
                         3- Atualizar Queimada
-                        4- Status de Queimadas
+                        4- Status de Queimada
+                        5- Localização Queimada
+                        6- Verificar área afetada
                         0- Sair
                     -----------------------------------------------------
                     """;
@@ -179,7 +233,7 @@ public class SistemaQueimadas {
             opcao = scanner.nextInt();
             scanner.nextLine();
 
-            if (opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 0){
+            if (opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 0){
                 if(opcao == 1){
                     cadastroQueimadas();
                 }else if(opcao == 2){
@@ -188,6 +242,10 @@ public class SistemaQueimadas {
                     atualizarQueimada();
                 }else if(opcao == 4){
                     verificarStatus();
+                }else if(opcao == 5){
+                    verificarLocalizacao();
+                }else if(opcao == 6) {
+                    verificarArea();
                 }else{
                     System.out.println("Saindo do sistema, Até logo!");
                     break;
