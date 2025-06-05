@@ -23,6 +23,13 @@ public class SistemaQueimadas {
         this.proximoID = 1;
     }
 
+    /**
+     * Realiza o cadastro de uma nova queimada no sistema.
+     * Este método guia o usuário através do processo de registrar a localização (município, estado, país)
+     * e, opcionalmente, adicionar detalhes como latitude e longitude. Em seguida, gera um ID automático para a queimada,
+     * registra o horário e permite adicionar detalhes opcionais como a área afetada e a causa.
+     * A queimada é adicionada à lista principal de queimadas e à lista de queimadas ativas.
+     */
     public void cadastroQueimadas(){
         System.out.println("Cadastro de queimadas: \n" +
                             "*********************");
@@ -97,11 +104,23 @@ public class SistemaQueimadas {
         }
     }
 
+    /**
+     * Lista todas as queimadas registradas no sistema.
+     * Se a lista de queimadas estiver vazia, exibe uma mensagem informando.
+     * Caso contrário, imprime os detalhes de cada queimada cadastrada no console.
+     */
     public void listarQueimadas(){
         System.out.println("Lista de queimadas: \n");
         System.out.println(listaQueimadas);
     }
 
+    /**
+     * Permite ao usuário atualizar o status de uma queimada existente.
+     * O usuário é solicitado a informar o ID da queimada que deseja modificar.
+     * Se a queimada for encontrada, o usuário pode definir um novo status ("Controlado" ou "Resolvido").
+     * A queimada é então movida da lista de queimadas ativas para a lista correspondente ao novo status (controladas ou resolvidas).
+     * Lida com entradas inválidas de ID e status.
+     */
     public void atualizarQueimada(){
         System.out.println("Você deseja atualizar o status de uma queimada?\n" +
                 "1- Sim\n" +
@@ -147,6 +166,12 @@ public class SistemaQueimadas {
         }
     }
 
+    /**
+     * Permite ao usuário verificar detalhes da localização de uma queimada específica.
+     * O usuário deve fornecer o ID da queimada. Uma vez encontrada, o sistema oferece opções
+     * para exibir o país, estado e país, ou município, estado e país da queimada.
+     * Lida com IDs não encontrados e opções de verificação inválidas.
+     */
     public void verificarLocalizacao(){
         System.out.println("Qual o ID da queimada que deseja verificar?\n");
         int idQueimada = scanner.nextInt();
@@ -180,6 +205,12 @@ public class SistemaQueimadas {
         }
     }
 
+    /**
+     * Permite ao usuário verificar a área afetada de uma queimada específica.
+     * O usuário é solicitado a informar o ID da queimada. Se a queimada for encontrada,
+     * o método {@code verificarArea()} da própria queimada é chamado para exibir a informação.
+     * Lida com IDs não encontrados.
+     */
     public void verificarArea(){
         System.out.println("Qual o ID da queimada que deseja verificar?\n");
         int idQueimada = scanner.nextInt();
@@ -199,6 +230,10 @@ public class SistemaQueimadas {
         }
     }
 
+    /**
+     * Exibe o status atual das queimadas, categorizando-as em Ativas, Controladas e Resolvidas.
+     * Imprime as queimadas presentes em cada uma dessas listas separadamente no console.
+     */
     public void verificarStatus(){
         System.out.println("Queimadas Ativas: \n");
         System.out.println("--------------------------\n");
@@ -214,6 +249,14 @@ public class SistemaQueimadas {
         System.out.println("--------------------------\n");
     }
 
+    /**
+     * Inicia o sistema de gerenciamento de queimadas, apresentando um menu principal ao usuário.
+     * O usuário pode escolher entre cadastrar novas queimadas, listar todas as queimadas,
+     * atualizar o status de uma queimada, verificar status por categoria, verificar localização
+     * de uma queimada específica, verificar a área afetada, ou sair do sistema.
+     * O sistema continua em execução até que o usuário escolha a opção de sair.
+     * Lida com entradas de menu inválidas.
+     */
     public void iniciar() {
         while(opcao != 0){
             String mensagemSistema = """
@@ -251,7 +294,7 @@ public class SistemaQueimadas {
                     break;
                 }
             }else {
-                System.out.println("Opção inválida! Por favor, digite 0, 1, 2, 3 ou 4");
+                System.out.println("Opção inválida! Por favor, digite 0, 1, 2, 3, 4, 5 ou 6");
                 opcao = -1;
             }
         }
