@@ -1,9 +1,6 @@
 package br.com.queimadas.gs;
 
 
-import java.time.LocalDateTime;
-import java.util.Scanner;
-
 public class Queimada {
     private int id;
     private int hora;
