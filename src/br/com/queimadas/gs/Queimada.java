@@ -66,56 +66,12 @@ public class Queimada {
         System.out.println("A área afetada foi de: " + areaEstimadaHectares + "ha.");
     }
 
-    public double getAreaEstimadaHectares() {
-        return areaEstimadaHectares;
-    }
-
-    public void setAreaEstimadaHectares(double areaEstimadaHectares) {
-        this.areaEstimadaHectares = areaEstimadaHectares;
-    }
-
     public Localizacao getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(Localizacao localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCausa() {
-        return causa;
-    }
-
-    public void setCausa(String causa) {
-        this.causa = causa;
-    }
-
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void exibirInformacoesQueimada() {
     }
 
     @Override
