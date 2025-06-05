@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Queimada {
     private int id;
-    private String hora;
+    private int hora;
     private String causa;
     private String status;
     private Localizacao localizacao;
@@ -14,7 +14,7 @@ public class Queimada {
 
 
 
-    public Queimada(int id, Localizacao localizacao, String hora) {
+    public Queimada(int id, Localizacao localizacao, int hora) {
         this.id = id;
         this.localizacao = localizacao;
         this.hora = hora;
@@ -76,6 +76,6 @@ public class Queimada {
 
     @Override
     public String toString() {
-        return "ID Queimada: " + id + "; Localização: " + localizacao + "; Causa: " + causa + "; Status: " + status + "; Horário: " + hora + "; Área: " + areaEstimadaHectares + "ha\n";
+        return "ID Queimada: " + id + "; Localização: " + localizacao + "; Causa: " + causa + "; Status: " + status + "; Horário: " + hora + ":00" + "; Área: " + areaEstimadaHectares + "ha\n";
     }
 }

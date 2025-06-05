@@ -69,38 +69,43 @@ public class SistemaQueimadas {
         System.out.println("Agora vamos cadastrar os detalhes da queimada: \n");
         int id = proximoID++;
         System.out.println("ID da Queimada gerado automaticamente: " + id);
-        System.out.println("Cadastre o horário da queimada: ");
-        String horario = scanner.nextLine();
-
-        Queimada queimada = new Queimada(id, localizacao, horario);
-        listaQueimadas.add(queimada);
-        listaAtivas.add(queimada);
-
-        System.out.println("Você deseja ADICIONAR Causa e Tamanho da área impactada?\n" +
-                           "Ou somente o Tamanho da Área?\n" +
-                           "1 - Causa e tamanho da área\n" +
-                           "2 - Tamanho da área\n" +
-                           "3 - Não desejo informar");
-        opcao = scanner.nextInt();
+        System.out.println("Cadastre o horário da queimada(Somente a hora): ");
+        int horario = scanner.nextInt();
         scanner.nextLine();
 
-        if(opcao == 1){
-            System.out.println("Qual o tamanho da área afetada em hectáres? (Caso for especificar, usar vírgula) ");
-            double area = scanner.nextDouble();
-            scanner.nextLine();
-            System.out.println("Qual foi a causa da queimada?");
-            String causaQueimada = scanner.nextLine();
-
-            queimada.registrarDetalhes(area,causaQueimada);
-            System.out.println("Detalhes registrados com sucesso, informações da queimada: \n " + queimada);
-        }else if(opcao == 2){
-            System.out.println("Qual o tamanho da área afetada em hectáres? (Caso for especificar, usar vírgula) ");
-            double area = scanner.nextDouble();
-            scanner.nextLine();
-            queimada.registrarDetalhes(area);
-            System.out.println("Tamanho da área atualizada! Informações da queimada: " + queimada);
+        if(horario < 00 || horario > 23){
+            System.out.println("Horário inválido");
         }else{
-            System.out.println("Queimada registrada!");
+            Queimada queimada = new Queimada(id, localizacao, horario);
+            listaQueimadas.add(queimada);
+            listaAtivas.add(queimada);
+
+            System.out.println("Você deseja ADICIONAR Causa e Tamanho da área impactada?\n" +
+                    "Ou somente o Tamanho da Área?\n" +
+                    "1 - Causa e tamanho da área\n" +
+                    "2 - Tamanho da área\n" +
+                    "3 - Não desejo informar");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            if(opcao == 1){
+                System.out.println("Qual o tamanho da área afetada em hectáres? (Caso for especificar, usar vírgula) ");
+                double area = scanner.nextDouble();
+                scanner.nextLine();
+                System.out.println("Qual foi a causa da queimada?");
+                String causaQueimada = scanner.nextLine();
+
+                queimada.registrarDetalhes(area,causaQueimada);
+                System.out.println("Detalhes registrados com sucesso, informações da queimada: \n " + queimada);
+            }else if(opcao == 2){
+                System.out.println("Qual o tamanho da área afetada em hectáres? (Caso for especificar, usar vírgula) ");
+                double area = scanner.nextDouble();
+                scanner.nextLine();
+                queimada.registrarDetalhes(area);
+                System.out.println("Tamanho da área atualizada! Informações da queimada: " + queimada);
+            }else{
+                System.out.println("Queimada registrada!");
+            }
         }
     }
 
@@ -155,9 +160,11 @@ public class SistemaQueimadas {
                     if(statusQueimada.equalsIgnoreCase("Controlado")){
                         listaControladas.add(queimadaEncontrada);
                         listaAtivas.remove(queimadaEncontrada);
+                        listaResolvidas.remove(queimadaEncontrada);
                     }else{
                         listaResolvidas.add(queimadaEncontrada);
                         listaAtivas.remove(queimadaEncontrada);
+                        listaControladas.remove(queimadaEncontrada);
                     }
                 }
             }else{
